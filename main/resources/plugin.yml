@@ -1,0 +1,121 @@
+name: OdsEconomy
+version: 1.0.0
+main: com.otis.odseconomy.OdsEconomy
+api-version: 1.21
+author: OD Plugins
+description: A comprehensive economy, land, dealership, and community features plugin.
+commands:
+  mgive:
+    description: Grant money to a player.
+    permission: odseconomy.admin
+  mtransfer:
+    description: Transfer money to another player.
+    permission: odseconomy.pay
+  sell:
+    description: Sell the item in your hand.
+    permission: odseconomy.sell
+  mregister:
+    description: Register a player to a chunk.
+    permission: odseconomy.admin
+  mcertification:
+    description: Check chunk ownership.
+    permission: odseconomy.certification
+  dgive:
+    description: Grant department access.
+    permission: odseconomy.admin
+  dorder:
+    description: Order from a department.
+    permission: odseconomy.order
+  dinquire:
+    description: Check department ownership.
+    permission: odseconomy.inquire
+  mreload:
+    description: Reload configuration and sell prices.
+    permission: odseconomy.admin
+  ecohelp:
+    description: Show all available commands.
+  balance:
+    aliases: [mbal, bal]
+    description: Check your balance.
+    permission: odseconomy.balance
+  baltop:
+    description: Show the richest players.
+    permission: odseconomy.baltop
+  mset:
+    description: Set a player's balance.
+    permission: odseconomy.admin
+  mtake:
+    description: Remove money from a player.
+    permission: odseconomy.admin
+  worth:
+    description: Check the sell value of the item in your hand.
+    permission: odseconomy.worth
+  dice:
+    description: Gamble your money on a dice roll.
+    permission: odseconomy.dice
+  lottery:
+    description: Buy tickets or check the lottery.
+    permission: odseconomy.lottery
+  bounty:
+    description: Place or list bounties on players.
+    permission: odseconomy.bounty
+  mnote:
+    description: Create a physical banknote from your balance.
+    permission: odseconomy.banknote
+permissions:
+  odseconomy.*:
+    description: Grants all OD's Economy permissions.
+    default: op
+    children:
+      odseconomy.admin: true
+      odseconomy.balance: true
+      odseconomy.baltop: true
+      odseconomy.pay: true
+      odseconomy.sell: true
+      odseconomy.worth: true
+      odseconomy.certification: true
+      odseconomy.order: true
+      odseconomy.inquire: true
+      odseconomy.dice: true
+      odseconomy.lottery: true
+      odseconomy.bounty: true
+      odseconomy.banknote: true
+  odseconomy.admin:
+    description: Admin commands (mgive, mregister, dgive, mreload, mset, mtake).
+    default: op
+  odseconomy.balance:
+    description: Allows /balance.
+    default: true
+  odseconomy.baltop:
+    description: Allows /baltop.
+    default: true
+  odseconomy.pay:
+    description: Allows /mtransfer.
+    default: true
+  odseconomy.sell:
+    description: Allows /sell.
+    default: true
+  odseconomy.worth:
+    description: Allows /worth.
+    default: true
+  odseconomy.certification:
+    description: Allows /mcertification.
+    default: true
+  odseconomy.order:
+    description: Allows /dorder.
+    default: true
+  odseconomy.inquire:
+    description: Allows /dinquire.
+    default: true
+  odseconomy.dice:
+    description: Allows /dice.
+    default: true
+  odseconomy.lottery:
+    description: Allows /lottery.
+    default: true
+  odseconomy.bounty:
+    description: Allows /bounty.
+    default: true
+  odseconomy.banknote:
+    description: Allows /mnote.
+    default: true

@@ -1,0 +1,252 @@
+# ==========================================
+# |   OD's Economy — Configuration        |
+# |   by OD Plugins                       |
+# ==========================================
+# After editing, run /mreload (admin) to
+# apply changes without restarting the
+# server.
+
+# ==========================================
+# GENERAL SETTINGS
+# ==========================================
+settings:
+
+  # Starting balance for new players (first
+  # time joining the server).
+  starting-balance: 0.0
+
+  # Currency symbol used in messages.
+  currency-symbol: "$"
+
+  # Show balance in the player list (Tab).
+  tablist-balance: true
+
+  # ========== FEATURE TOGGLES ==========
+  # Set any of these to false to disable
+  # the corresponding feature entirely.
+  # Disabled features will not appear in
+  # /ecohelp and will tell the user the
+  # feature is turned off.
+  enable-command-balance: true
+  enable-command-baltop: true
+  enable-command-mset: true
+  enable-command-mtake: true
+  enable-command-worth: true
+  enable-command-pay: true
+  enable-command-certification: true
+  enable-command-order: true
+  enable-command-inquire: true
+
+# ==========================================
+# INTEREST
+# ==========================================
+# Players earn interest on their balance
+# at a set interval. Disabled by default.
+interest:
+  enabled: false
+  # Percentage earned per interval (e.g.
+  # 0.01 = 1%).
+  rate: 0.01
+  # Interval in seconds between interest
+  # payouts.
+  interval-seconds: 3600
+  # Minimum balance required to earn
+  # interest. Set to 0 for no minimum.
+  min-balance: 0.0
+  # Maximum balance that earns interest.
+  # Balances above this get nothing.
+  # Set to -1 for no cap.
+  max-balance: -1.0
+
+# ==========================================
+# LOTTERY
+# ==========================================
+# A community lottery where players buy
+# tickets. A winner is drawn automatically
+# at a set interval.
+lottery:
+  enabled: true
+  # Price of a single ticket.
+  ticket-price: 100.0
+  # Interval in seconds between draws.
+  draw-interval-seconds: 86400
+  # Percentage taken from the pot as the
+  # house cut (0-100).
+  house-cut-percent: 10
+  # Where the house cut goes:
+  #   ""          - removed from the pot (void)
+  #   "jackpot"   - added to next draw's pot
+  #   <UUID>      - deposited to a specific
+  #                 player's balance
+  house-cut-destination: ""
+  # Maximum tickets a single player can
+  # hold for the current draw.
+  max-tickets-per-player: 100
+  # Minimum tickets sold required for a
+  # draw to proceed.
+  min-tickets-to-draw: 1
+  # Automatically draw a winner when the
+  # interval elapses.
+  auto-draw: true
+  # Starting pot when no tickets are sold.
+  starting-pot: 0.0
+  # Broadcast the winner to the whole server.
+  broadcast-winner: true
+  # Broadcast when someone buys a ticket.
+  broadcast-ticket-purchase: false
+  # Notify the winner via private message.
+  notify-winner: true
+  # How many seconds before draw to send a
+  # countdown warning (0 to disable).
+  countdown-warning-seconds: 3600
+
+# ==========================================
+# GAMBLING
+# ==========================================
+# Dice-style gambling with configurable
+# odds and location restrictions.
+gambling:
+  enabled: true
+  # Multiplier on a winning bet
+  # (e.g. 2.0 = double-or-nothing).
+  dice-multiplier: 2.0
+  # When true, players must be inside one
+  # of the defined locations below to
+  # gamble. When false, gambling is
+  # allowed anywhere (provided the feature
+  # is enabled).
+  require-location: false
+  # List of allowed gambling locations.
+  # Only checked when require-location
+  # is true. Player must be within
+  # <radius> blocks of <x, y, z> in
+  # <world>.
+  locations: []
+  # Example:
+  # locations:
+  #   - world: world
+  #     x: 100.0
+  #     y: 64.0
+  #     z: 200.0
+  #     radius: 10.0
+
+# ==========================================
+# BOUNTIES
+# ==========================================
+# Players may place bounties on other
+# players. When the target dies, the
+# killer collects the bounty.
+bounties:
+  enabled: true
+  # Minimum bounty a player can place.
+  min-amount: 1.0
+  # Maximum bounty a player can place.
+  max-amount: 100000.0
+  # Notify the target when a bounty is
+  # placed on them.
+  notify-target: true
+  # Broadcast to the whole server when
+  # a bounty is collected.
+  broadcast-collect: true
+  # Allow players to cancel their own
+  # bounty (refund minus a fee).
+  allow-cancel: true
+  # Fee (percentage 0-100) taken when
+  # cancelling a bounty.
+  cancel-fee-percent: 10
+
+# ==========================================
+# BANKNOTES
+# ==========================================
+# Players can create physical banknote
+# items that can be traded or right-
+# clicked to deposit into a balance.
+banknotes:
+  enabled: true
+  # Smallest amount allowed on a note.
+  min-amount: 1.0
+  # Largest amount allowed on a note.
+  max-amount: 100000.0
+  # The material of the note item.
+  item-material: PAPER
+  # Display name (colour codes with &).
+  item-name: "&6Bank Note &7(%amount%)"
+  # Lore lines (colour codes with &).
+  # Use %amount% as a placeholder for
+  # the formatted value.
+  item-lore:
+    - "&7Redeemable for &e%amount%"
+    - "&7Right-click to deposit"
+
+# ==========================================
+# TRANSACTION LOG
+# ==========================================
+# Logs all balance changes to a file for
+# admin review.
+transaction-log:
+  enabled: false
+  # Log file name (saved in the plugin
+  # data folder).
+  log-file: transactions.log
+  # Format: "PLAIN" or "CSV"
+  format: PLAIN
+
+# ==========================================
+# DEALERSHIPS
+# ==========================================
+# A dealership is a shop that a player can
+# own. Owners can place bulk orders from
+# their dealership using /dorder.
+#
+# To give a dealership to a player:
+#   /dgive <dealership_name> <player_name>
+# (requires odseconomy.admin permission)
+#
+# To remove a player's dealership, set
+# owner to "" (empty).
+#
+# Items format:
+#   "MATERIAL_NAME, quantity_per_set, cost_in_dollars"
+# When a player orders, the order is rounded
+# up to the nearest full set.
+
+dealerships:
+
+  clockwork_supplies:
+    owner: ""
+    items:
+      - "REDSTONE, 64, 18"
+
+  enchant_house:
+    owner: ""
+    items:
+      - "LAPIS_LAZULI, 64, 20"
+
+  canadian_wheel:
+    owner: ""
+    items:
+      - "OAK_LOG, 64, 15"
+
+# ==========================================
+# SELL PRICES
+# ==========================================
+# Items players can sell using /sell.
+# Format: MATERIAL_NAME: price_in_dollars
+# Use decimals for fractional prices.
+# To disable an item, set it to 0 or
+# remove the line entirely.
+
+sell-prices:
+  DIAMOND: 6.0
+  NETHERITE_INGOT: 120.0
+  ENDER_PEARL: 3.0
+  GOLDEN_APPLE: 16.0
+  IRON_INGOT: 0.25
+  GOLD_INGOT: 2.0
+  ENCHANTED_GOLDEN_APPLE: 120.0
+  TOTEM_OF_UNDYING: 144.0
+  ELYTRA: 384.0
+  SHULKER_BOX: 48.0
+  DRIED_KELP_BLOCK: 2.0
+  HONEY_BOTTLE: 4.0
+  SHORT_GRASS: 0.03125
