@@ -1,4 +1,4 @@
-# OD Eco v1.1
+# OD Eco v1.1.1
 
 A comprehensive Paper economy plugin with GUI-driven tax management, player dealerships, sell shops, interest, lottery, gambling, bounties, banknotes, auctions, shared accounts, and transaction logging.
 
